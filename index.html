@@ -1,0 +1,1288 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ИИ-агенты для таргетологов и SMM — рост чека ×3 за 6 недель</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0F0D1E;
+    --bg-soft: #1A1730;
+    --card: #1E1B3A;
+    --card-2: #252243;
+    --ink: #FFFFFF;
+    --ink-2: #C4BFE0;
+    --ink-3: #8A85A8;
+    --ink-4: #5A567A;
+    --line: #2D2A4A;
+    --line-soft: #252243;
+    --coral: #FF5E4A;
+    --coral-soft: #3A1F25;
+    --lime: #C4F54B;
+    --lime-soft: #2A3518;
+    --peach: #FFB85C;
+    --peach-soft: #3A2E1B;
+    --sage: #5BE5A8;
+    --sage-soft: #1A3329;
+    --lilac: #B8A9FF;
+    --cyan: #5BD5FF;
+    --deep: #0F0D1E;
+    --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: 'Instrument Serif', Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--lime); color: var(--deep); }
+  .lp { max-width: 1120px; margin: 0 auto; padding: 1.5rem 1.5rem 4rem; position: relative; }
+  /* Decorative blobs */
+  .lp::before, .lp::after {
+    content: ''; position: absolute; pointer-events: none;
+    border-radius: 50%; filter: blur(100px); opacity: 0.35; z-index: 0;
+  }
+  .lp::before { width: 600px; height: 600px; background: var(--coral); top: -150px; right: -250px; }
+  .lp::after { width: 500px; height: 500px; background: var(--lime); top: 600px; left: -200px; opacity: 0.18; }
+  .lp > * { position: relative; z-index: 1; }
+  /* Topbar */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem 0 2rem; font-size: 14px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 18px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .brand-dot {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--lime), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--deep); font-weight: 800; font-size: 14px;
+    box-shadow: 0 4px 16px rgba(196, 245, 75, 0.3);
+  }
+  .topbar-nav { display: flex; gap: 1.75rem; color: var(--ink-2); }
+  .topbar-nav a { color: inherit; text-decoration: none; transition: color 0.2s; font-weight: 500; }
+  .topbar-nav a:hover { color: var(--lime); }
+  /* Hero */
+  .hero {
+    padding: 2rem 0 4rem;
+    text-align: center;
+    animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 8px 16px 8px 10px; border-radius: 100px;
+    font-size: 13px; color: var(--ink-2); font-weight: 500;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+  }
+  .hero-eyebrow-badge {
+    background: var(--lime); color: var(--deep);
+    padding: 3px 10px; border-radius: 100px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+  }
+  .hero h1 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(36px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    max-width: 1000px;
+    margin: 0 auto 1.75rem;
+  }
+  .hero h1 .italic {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--lime);
+    letter-spacing: -0.02em;
+  }
+  .hero h1 .marker {
+    position: relative; display: inline-block; white-space: nowrap;
+  }
+  .hero h1 .marker::before {
+    content: ''; position: absolute;
+    left: -4px; right: -4px; bottom: 4px; height: 38%;
+    background: var(--coral); z-index: -1;
+    border-radius: 4px;
+    transform: scaleX(0); transform-origin: left;
+    animation: markerGrow 1.1s 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 1.4vw, 19px);
+    color: var(--ink-2);
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; align-items: center; }
+  .cta-main {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--lime); color: var(--deep);
+    font-family: var(--sans); font-size: 15px; font-weight: 700;
+    padding: 17px 28px; border-radius: 14px;
+    cursor: pointer; border: none; letter-spacing: -0.01em;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(196, 245, 75, 0.35);
+    position: relative; overflow: hidden;
+    text-decoration: none;
+  }
+  .cta-main::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+    transform: translateX(-120%); transition: transform 0.7s;
+  }
+  .cta-main:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(196, 245, 75, 0.5); }
+  .cta-main:hover::after { transform: translateX(120%); }
+  .cta-wa {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(37, 211, 102, 0.35);
+  }
+  .cta-wa:hover { box-shadow: 0 10px 32px rgba(37, 211, 102, 0.5); }
+  .cta-main .arrow { transition: transform 0.3s; display: inline-block; }
+  .cta-main:hover .arrow { transform: translateX(4px); }
+  .cta-trust {
+    margin-top: 1.5rem;
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; color: var(--ink-3);
+  }
+  .trust-avatars { display: flex; }
+  .trust-avatars span {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--bg);
+    display: inline-block; margin-left: -8px;
+    background: linear-gradient(135deg, var(--lime), var(--sage));
+    font-size: 11px; font-weight: 700; color: var(--deep);
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .trust-avatars span:first-child { margin-left: 0; background: linear-gradient(135deg, var(--lilac), var(--cyan)); color: var(--deep); }
+  .trust-avatars span:nth-child(2) { background: linear-gradient(135deg, var(--peach), var(--coral)); color: #fff; }
+  .trust-avatars span:nth-child(3) { background: linear-gradient(135deg, var(--sage), var(--lime)); color: var(--deep); }
+  /* Money bar */
+  .money-bar {
+    display: flex; justify-content: center; gap: 3rem;
+    margin-top: 3rem; flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    max-width: 780px; margin-left: auto; margin-right: auto;
+  }
+  .money-item { text-align: center; }
+  .money-num {
+    font-weight: 700; font-size: 28px;
+    color: var(--lime); letter-spacing: -0.02em;
+    line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .money-lbl {
+    font-size: 12px; color: var(--ink-3);
+    margin-top: 6px; font-weight: 500;
+  }
+  /* Hero visual — AI agents cards */
+  .hero-agents {
+    margin-top: 4rem;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .agent-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1.5rem 1.25rem;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .agent-card:nth-child(even) { transform: translateY(20px); }
+  .agent-card:hover { transform: translateY(-6px); border-color: var(--lime); }
+  .agent-card:nth-child(even):hover { transform: translateY(14px); border-color: var(--lime); }
+  .agent-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 1rem;
+  }
+  .agent-1 .agent-icon { background: var(--coral-soft); }
+  .agent-2 .agent-icon { background: var(--peach-soft); }
+  .agent-3 .agent-icon { background: var(--sage-soft); }
+  .agent-4 .agent-icon { background: var(--lime-soft); }
+  .agent-name { font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px; letter-spacing: -0.01em; }
+  .agent-role { font-size: 12px; color: var(--ink-3); line-height: 1.5; }
+  .agent-status {
+    margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--line-soft);
+    font-size: 11px; color: var(--lime); font-weight: 600;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .agent-status::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--lime); box-shadow: 0 0 0 3px rgba(196, 245, 75, 0.2);
+    animation: pulse 2s infinite;
+  }
+  /* Earnings counter */
+  .loss-section {
+    margin: 6rem 0;
+    background: linear-gradient(135deg, var(--card), var(--card-2));
+    border-radius: 28px;
+    padding: 3.5rem 2.5rem;
+    color: #fff;
+    text-align: center;
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .loss-section::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(196, 245, 75, 0.12), transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(255, 94, 74, 0.1), transparent 50%);
+    pointer-events: none;
+  }
+  .loss-section > * { position: relative; z-index: 1; }
+  .loss-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--serif); font-style: italic;
+    font-size: 18px; color: var(--lime); margin-bottom: 1rem;
+  }
+  .loss-section h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    max-width: 760px; margin-left: auto; margin-right: auto;
+  }
+  .loss-meter {
+    display: inline-flex; align-items: baseline; gap: 10px;
+    background: rgba(196, 245, 75, 0.05);
+    border: 1px solid rgba(196, 245, 75, 0.15);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    margin-bottom: 2rem;
+  }
+  .loss-number {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 88px);
+    color: var(--lime);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    min-width: 320px;
+    text-shadow: 0 0 40px rgba(196, 245, 75, 0.3);
+  }
+  .loss-currency {
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--sage);
+    font-weight: 400;
+  }
+  .loss-caption {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .loss-ticker {
+    font-size: 12px; color: var(--lime);
+    margin-top: 1.25rem;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .loss-ticker::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--lime); animation: pulse-lime 1.3s infinite;
+  }
+  /* Sections */
+  .section { padding: 5rem 0; max-width: 920px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--serif); font-style: italic;
+    font-size: 17px; color: var(--lime);
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: ''; width: 28px; height: 1px; background: var(--lime);
+  }
+  .section h2 {
+    font-weight: 700;
+    font-size: clamp(28px, 4.5vw, 50px);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    max-width: 800px;
+  }
+  .section h2 .italic { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--lime); }
+  .section h2 .mark {
+    background: var(--coral); padding: 0 10px; border-radius: 6px; color: var(--ink);
+  }
+  .section .lead {
+    font-size: clamp(16px, 1.3vw, 18px);
+    color: var(--ink-2);
+    line-height: 1.65;
+    max-width: 680px;
+  }
+  /* Curiosity facts */
+  .curiosity {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; margin-top: 2.5rem;
+  }
+  .fact {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    transition: all 0.3s;
+  }
+  .fact:hover { border-color: var(--lime); transform: translateY(-4px); }
+  .fact-big {
+    font-family: var(--serif); font-style: italic;
+    font-size: 52px; font-weight: 400; color: var(--lime);
+    line-height: 1; margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+  }
+  .fact-big .unit { font-size: 22px; color: var(--ink-3); font-style: normal; font-family: var(--sans); font-weight: 500; }
+  .fact h4 {
+    font-size: 15px; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .fact p { font-size: 13px; color: var(--ink-2); line-height: 1.6; }
+  /* Pain cards */
+  .pains {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px; margin-top: 2rem;
+  }
+  .pain {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+  }
+  .pain:hover { transform: translateY(-3px); border-color: var(--coral); }
+  .pain-top { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+  .pain-emoji {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--bg-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .pain h4 { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+  .pain p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+  /* Expert block */
+  .expert-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 2.75rem;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .expert-card::before {
+    content: ''; position: absolute; top: -120px; right: -120px;
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(196, 245, 75, 0.15), transparent 65%);
+    pointer-events: none;
+  }
+  .expert-card::after {
+    content: ''; position: absolute; bottom: -100px; left: -80px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 94, 74, 0.1), transparent 65%);
+    pointer-events: none;
+  }
+  .expert-card > * { position: relative; z-index: 1; }
+  .expert-photo {
+    width: 260px; height: 260px; border-radius: 28px;
+    background: linear-gradient(135deg, var(--lime), var(--sage));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 104px; color: var(--deep);
+    margin-bottom: 1.25rem;
+    box-shadow: 0 24px 48px -20px rgba(196, 245, 75, 0.4);
+    letter-spacing: -0.02em;
+    position: relative; overflow: hidden;
+  }
+  .expert-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center 20%;
+    display: block;
+  }
+  .expert-badges {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  }
+  .expert-badge {
+    background: var(--bg-soft); border-radius: 14px;
+    padding: 0.85rem 0.5rem; text-align: center;
+    border: 1px solid var(--line);
+  }
+  .expert-badge-num {
+    font-weight: 700; font-size: 22px; color: var(--lime);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .expert-badge-lbl {
+    font-size: 10px; color: var(--ink-3); margin-top: 6px;
+    font-weight: 600; letter-spacing: 0.02em;
+  }
+  .expert-right h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .expert-role {
+    font-size: 16px; color: var(--ink-2);
+    margin-bottom: 1.5rem; line-height: 1.55;
+    font-weight: 500;
+  }
+  .expert-achievements {
+    list-style: none; padding: 0; margin-bottom: 1.75rem;
+  }
+  .expert-achievements li {
+    font-size: 14.5px; color: var(--ink-2); line-height: 1.55;
+    padding: 0.75rem 0 0.75rem 28px;
+    position: relative;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .expert-achievements li:last-child { border-bottom: none; }
+  .expert-achievements li::before {
+    content: '✦'; position: absolute; left: 0; top: 0.65rem;
+    color: var(--lime); font-size: 14px;
+  }
+  .expert-achievements li strong { color: var(--ink); font-weight: 700; }
+  .expert-quote {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.4; color: var(--ink);
+    padding: 1.25rem 1.5rem 1.25rem 2.5rem;
+    background: var(--lime-soft);
+    border-radius: 16px;
+    position: relative;
+    border: 1px solid rgba(196, 245, 75, 0.2);
+  }
+  .expert-quote::before {
+    content: '"'; position: absolute;
+    left: 0.75rem; top: -0.25rem;
+    font-size: 56px; color: var(--lime);
+    font-family: var(--serif); line-height: 1;
+  }
+  /* Program steps */
+  .modules {
+    margin-top: 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .module {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .module:hover { transform: translateY(-4px); border-color: var(--lime); }
+  .module-num {
+    position: absolute; top: 1.5rem; right: 1.75rem;
+    font-family: var(--serif); font-style: italic;
+    font-size: 52px; color: var(--lime);
+    line-height: 1; font-weight: 400;
+    opacity: 0.5;
+  }
+  .module-tag {
+    display: inline-block;
+    background: var(--lime-soft); color: var(--lime);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    padding: 4px 10px; border-radius: 100px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(196, 245, 75, 0.25);
+  }
+  .module h3 {
+    font-size: 20px; font-weight: 700;
+    color: var(--ink); margin-bottom: 0.75rem;
+    letter-spacing: -0.015em; line-height: 1.2;
+  }
+  .module p { font-size: 14px; color: var(--ink-2); line-height: 1.6; margin-bottom: 1rem; }
+  .module-items { list-style: none; padding: 0; margin-top: 1rem; border-top: 1px solid var(--line-soft); padding-top: 1rem; }
+  .module-items li {
+    font-size: 13px; color: var(--ink-2);
+    padding: 4px 0 4px 20px; position: relative;
+  }
+  .module-items li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 10px; height: 2px; background: var(--lime); border-radius: 2px;
+  }
+  /* Before/after */
+  .contrast {
+    margin-top: 2rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .contrast-card {
+    border-radius: 22px;
+    padding: 2rem;
+  }
+  .contrast-card.before {
+    background: var(--card);
+    border: 1px solid var(--line);
+  }
+  .contrast-card.after {
+    background: linear-gradient(135deg, var(--lime), var(--sage));
+    color: var(--deep);
+    position: relative; overflow: hidden;
+  }
+  .contrast-card.after::before {
+    content: ''; position: absolute; top: -40%; right: -20%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.25), transparent 60%);
+  }
+  .contrast-label {
+    font-family: var(--serif); font-style: italic;
+    font-size: 17px; margin-bottom: 1.5rem;
+  }
+  .contrast-card.before .contrast-label { color: var(--ink-3); }
+  .contrast-card.after .contrast-label { color: var(--deep); position: relative; z-index: 1; font-weight: 600; }
+  .contrast-card ul { list-style: none; padding: 0; position: relative; z-index: 1; }
+  .contrast-card ul li {
+    font-size: 15px; line-height: 1.5;
+    padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .contrast-card.after ul li { border-bottom-color: rgba(30, 27, 58, 0.15); color: var(--deep); font-weight: 500; }
+  .contrast-card ul li:last-child { border-bottom: none; }
+  .contrast-card.before ul li::before { content: '✕'; color: var(--coral); flex-shrink: 0; font-size: 13px; padding-top: 2px; }
+  .contrast-card.before ul li { color: var(--ink-2); }
+  .contrast-card.after ul li::before { content: '✓'; color: var(--deep); flex-shrink: 0; font-weight: 800; padding-top: 2px; }
+  /* Cases */
+  .cases {
+    margin-top: 2.5rem;
+    display: grid; grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .case {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 2rem;
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 2rem;
+    transition: all 0.3s;
+  }
+  .case:hover { transform: translateY(-4px); border-color: var(--lime); }
+  .case-person { display: flex; gap: 14px; align-items: center; }
+  .case-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 18px; color: var(--deep);
+    flex-shrink: 0;
+    position: relative; overflow: hidden;
+  }
+  .case-avatar img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .case:nth-child(1) .case-avatar { background: linear-gradient(135deg, var(--lime), var(--sage)); }
+  .case:nth-child(2) .case-avatar { background: linear-gradient(135deg, var(--cyan), var(--lilac)); }
+  .case:nth-child(3) .case-avatar { background: linear-gradient(135deg, var(--peach), var(--coral)); color: #fff; }
+  .case-name { font-weight: 700; font-size: 17px; color: var(--ink); margin-bottom: 2px; letter-spacing: -0.01em; }
+  .case-niche { font-size: 12px; color: var(--ink-3); }
+  .case-metrics { margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1; }
+  .metric-pill {
+    background: var(--lime); color: var(--deep);
+    font-size: 13px; font-weight: 700;
+    padding: 6px 12px; border-radius: 100px;
+    letter-spacing: -0.01em;
+  }
+  .metric-pill.alt {
+    background: var(--lime-soft); color: var(--lime);
+    border: 1px solid rgba(196, 245, 75, 0.3);
+  }
+  .case-body { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .case-col-label {
+    font-size: 11px; color: var(--lime);
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .case-col p { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
+  /* Timer */
+  .timer-block {
+    background: linear-gradient(135deg, var(--lime), var(--sage));
+    border-radius: 28px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0 2rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .timer-block::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3), transparent 50%);
+    pointer-events: none;
+  }
+  .timer-block > * { position: relative; z-index: 1; }
+  .timer-kicker {
+    display: inline-block;
+    background: var(--deep); color: var(--lime);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .timer-block h3 {
+    font-weight: 700; font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--deep); margin-bottom: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .timer-block h3 .italic { font-family: var(--serif); font-style: italic; color: var(--deep); font-weight: 400; }
+  .timer {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  }
+  .timer-unit {
+    background: var(--deep); border-radius: 16px;
+    padding: 1.25rem 1.5rem; min-width: 90px;
+    box-shadow: 0 8px 24px rgba(15, 13, 30, 0.2);
+  }
+  .timer-num {
+    font-family: var(--sans); font-weight: 700;
+    font-size: clamp(32px, 5vw, 44px);
+    color: var(--lime); line-height: 1;
+    letter-spacing: -0.02em; font-variant-numeric: tabular-nums;
+  }
+  .timer-lbl {
+    font-size: 11px; color: var(--ink-3);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-top: 8px; font-weight: 600;
+  }
+  /* Final */
+  .final {
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    padding: 4rem 2.5rem;
+    margin-top: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .final::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(196, 245, 75, 0.1), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255, 94, 74, 0.08), transparent 40%);
+    pointer-events: none;
+  }
+  .final > * { position: relative; z-index: 1; }
+  .final-kicker {
+    font-family: var(--serif); font-style: italic;
+    font-size: 19px; color: var(--lime); margin-bottom: 1rem;
+  }
+  .final h2 {
+    font-weight: 700;
+    font-size: clamp(28px, 4.5vw, 46px);
+    line-height: 1.1; letter-spacing: -0.035em;
+    color: var(--ink); margin-bottom: 1.25rem;
+    max-width: 760px; margin-left: auto; margin-right: auto;
+  }
+  .final h2 .italic { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--lime); }
+  .final p {
+    font-size: 16px; color: var(--ink-2);
+    max-width: 580px; margin: 0 auto 2rem; line-height: 1.65;
+  }
+  .final .wa-note {
+    margin-top: 1.5rem; font-size: 13px; color: var(--ink-3);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .final .wa-note .wa-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #25D366;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 10px; font-weight: 700;
+  }
+  .signature {
+    text-align: center; padding: 3rem 0 0;
+    font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--ink-3);
+  }
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes markerGrow {
+    to { transform: scaleX(1); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(196, 245, 75, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(196, 245, 75, 0); }
+  }
+  @keyframes pulse-lime {
+    0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(196, 245, 75, 0.6); }
+    50% { opacity: 0.7; transform: scale(1.3); box-shadow: 0 0 0 6px rgba(196, 245, 75, 0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  /* Responsive */
+  @media (max-width: 960px) {
+    .lp { padding: 1.25rem 1.25rem 3rem; }
+    .section { padding: 4rem 0; max-width: 100%; }
+    .loss-section { padding: 3rem 2rem; margin: 4rem 0; }
+    .curiosity { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 820px) {
+    .hero { padding: 1rem 0 3rem; }
+    .hero-agents { grid-template-columns: repeat(2, 1fr); margin-top: 3rem; }
+    .agent-card:nth-child(even) { transform: none; }
+    .curiosity { grid-template-columns: 1fr; }
+    .pains { grid-template-columns: 1fr; }
+    .contrast { grid-template-columns: 1fr; }
+    .modules { grid-template-columns: 1fr; }
+    .case { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.5rem; }
+    .case-body { grid-template-columns: 1fr; gap: 1rem; }
+    .expert-card { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+    .expert-photo { width: 180px; height: 180px; font-size: 76px; margin: 0 auto 1.25rem; border-radius: 24px; }
+    .expert-badges { max-width: 340px; margin: 0 auto; }
+    .loss-meter { padding: 1.5rem 1.5rem; }
+    .loss-number { min-width: 0; }
+    .topbar-nav { display: none; }
+    .topbar { padding-bottom: 1.25rem; }
+    .timer-block { padding: 2.5rem 1.5rem; border-radius: 20px; }
+    .final { padding: 3rem 1.75rem; border-radius: 20px; }
+    .money-bar { gap: 1.5rem; padding: 1.25rem; }
+  }
+  @media (max-width: 560px) {
+    .lp { padding: 1rem 1rem 2rem; overflow-x: hidden; }
+    .section { padding: 3rem 0; }
+    .hero h1 { font-size: clamp(28px, 8vw, 40px); letter-spacing: -0.03em; }
+    .hero h1 br { display: none; }
+    .hero-eyebrow { font-size: 11.5px; padding: 7px 12px 7px 8px; }
+    .hero-sub { font-size: 15px; }
+    .cta-main { padding: 16px 22px; font-size: 14px; width: 100%; justify-content: center; }
+    .cta-trust { font-size: 12px; margin-top: 1.25rem; }
+    .money-bar { gap: 1rem; padding: 1rem; }
+    .money-num { font-size: 22px; }
+    .money-lbl { font-size: 11px; }
+    .hero-agents { grid-template-columns: 1fr; gap: 10px; margin-top: 2.5rem; }
+    .agent-card { padding: 1.25rem; }
+    .section h2 { font-size: clamp(24px, 6.5vw, 32px); }
+    .section h2 br { display: none; }
+    .section .lead { font-size: 15px; }
+    .loss-section { padding: 2.5rem 1.25rem; border-radius: 20px; }
+    .loss-meter { padding: 1.25rem 1.25rem; border-radius: 16px; }
+    .loss-number { font-size: clamp(38px, 10vw, 56px); letter-spacing: -0.03em; }
+    .loss-currency { font-size: 24px; }
+    .loss-caption { font-size: 13px; }
+    .fact { padding: 1.5rem 1.25rem; }
+    .fact-big { font-size: 40px; }
+    .pain { padding: 1.25rem; }
+    .pain h4 { font-size: 15px; }
+    .expert-card { padding: 1.5rem; border-radius: 22px; }
+    .expert-photo { width: 140px; height: 140px; font-size: 60px; border-radius: 20px; }
+    .expert-right h2 { font-size: 26px; }
+    .expert-role { font-size: 14.5px; }
+    .expert-achievements li { font-size: 13.5px; padding: 0.6rem 0 0.6rem 24px; }
+    .expert-quote { font-size: 16px; padding: 1rem 1rem 1rem 2.25rem; }
+    .expert-quote::before { font-size: 44px; left: 0.5rem; }
+    .contrast-card { padding: 1.5rem 1.25rem; border-radius: 18px; }
+    .contrast-card ul li { font-size: 14px; }
+    .case-person { flex-direction: row; }
+    .case-name { font-size: 15.5px; }
+    .case-niche { font-size: 11.5px; }
+    .metric-pill { font-size: 12px; padding: 5px 10px; }
+    .case-col p { font-size: 13.5px; }
+    .timer-unit { min-width: 64px; padding: 0.9rem 0.75rem; border-radius: 12px; }
+    .timer-num { font-size: 32px; }
+    .timer-lbl { font-size: 10px; }
+    .timer-block h3 { font-size: 19px; margin-bottom: 1.25rem; }
+    .timer-kicker { font-size: 10.5px; padding: 5px 11px; }
+    .final-kicker { font-size: 16px; }
+    .final h2 { font-size: 26px; }
+    .final p { font-size: 15px; }
+    .signature { font-size: 14px; padding: 2rem 0 0; }
+  }
+</style>
+</head>
+<body>
+<div class="lp">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-dot">AI</div>
+      <span>AI-Performance</span>
+    </div>
+    <nav class="topbar-nav">
+      <a href="#expert">Ментор</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#webinar">Вебинар</a>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-badge">НОВЫЙ ПОТОК</span>
+      <span>Для таргетологов и SMM · 18–30 · весна 2026</span>
+    </div>
+    <h1>Пока конкуренты пишут ТЗ в ночи — твои <span class="italic">ИИ-агенты</span> ведут <span class="marker">10 клиентов разом.</span></h1>
+    <p class="hero-sub">6 недель — и у тебя своя команда из 7 ИИ-агентов: креативы, отчёты, стратегии, аналитика, копирайт, аудит, продажи. Ты берёшь чек ×3, ведёшь больше клиентов и перестаёшь сидеть до 3 ночи над очередным отчётом в Excel.</p>
+    <div class="cta-row">
+      <a class="cta-main cta-wa" href="https://chat.whatsapp.com/HCT9o2mYHCb1c0IoxWjxmm?mode=gi_t" target="_blank" rel="noopener">
+        <span>Залететь в чат и на вебинар</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+    <div class="cta-trust">
+      <div class="trust-avatars">
+        <span>Д</span><span>М</span><span>К</span>
+      </div>
+      <span>487 таргетологов и SMM-щиков уже внутри</span>
+    </div>
+
+    <div class="money-bar">
+      <div class="money-item">
+        <div class="money-num">×3</div>
+        <div class="money-lbl">чек за клиента</div>
+      </div>
+      <div class="money-item">
+        <div class="money-num">10+</div>
+        <div class="money-lbl">клиентов одновременно</div>
+      </div>
+      <div class="money-item">
+        <div class="money-num">–70%</div>
+        <div class="money-lbl">времени на рутину</div>
+      </div>
+      <div class="money-item">
+        <div class="money-num">900k+ ₸</div>
+        <div class="money-lbl">доход выпускника в месяц</div>
+      </div>
+    </div>
+
+    <div class="hero-agents">
+      <div class="agent-card agent-1">
+        <div class="agent-icon">🎯</div>
+        <div class="agent-name">Агент-Креатор</div>
+        <div class="agent-role">Генерит 30 креативов за вечер — вместо 3</div>
+        <div class="agent-status">активен</div>
+      </div>
+      <div class="agent-card agent-2">
+        <div class="agent-icon">📊</div>
+        <div class="agent-name">Агент-Отчётник</div>
+        <div class="agent-role">Собирает отчёт клиенту за 2 минуты</div>
+        <div class="agent-status">активен</div>
+      </div>
+      <div class="agent-card agent-3">
+        <div class="agent-icon">🧠</div>
+        <div class="agent-name">Агент-Стратег</div>
+        <div class="agent-role">Пишет медиаплан и воронку за тебя</div>
+        <div class="agent-status">активен</div>
+      </div>
+      <div class="agent-card agent-4">
+        <div class="agent-icon">💰</div>
+        <div class="agent-name">Агент-Апсейл</div>
+        <div class="agent-role">Поднимает чек текущим клиентам ×2–3</div>
+        <div class="agent-status">активен</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Earnings counter -->
+  <section class="loss-section reveal">
+    <div class="loss-eyebrow">пока ты читаешь этот лендос...</div>
+    <h2>Таргетологи с ИИ-командой уже зарабатывают на этом деньги. Реально. Прямо сейчас.</h2>
+    <div class="loss-meter">
+      <div class="loss-number" id="loss">0</div>
+      <div class="loss-currency">₸</div>
+    </div>
+    <div class="loss-ticker">заработано выпускниками с момента открытия этой страницы</div>
+    <p class="loss-caption">Средний доход SMM-щика и таргетолога — около 250 тыс. Выпускники программы выходят на <strong style="color:#C4F54B">900 000 ₸+ в месяц</strong>: берут чеки ×3, ведут 8–12 клиентов одновременно, продают «ИИ-внедрение» отдельной услугой за 300k+.</p>
+  </section>
+
+  <!-- Curiosity -->
+  <section class="section reveal">
+    <div class="section-label">тебя удивит это</div>
+    <h2>3 цифры, из-за которых <span class="italic">ты пересмотришь</span> свой чек уже завтра.</h2>
+    <p class="lead">Пока ты делаешь тестовые креативы вручную и сидишь с Excel — рынок переобулся. Агентства с ИИ-командой берут в 3 раза дороже за ту же услугу. И клиенты платят не глядя. Потому что результат быстрее.</p>
+    <div class="curiosity">
+      <div class="fact">
+        <div class="fact-big">×3<span class="unit"> чек</span></div>
+        <h4>За ту же услугу</h4>
+        <p>Вёл клиента за 80k? После программы — 240k за того же. Потому что теперь ты не «руки за деньги», а «специалист с ИИ-стеком». Это другая ценовая категория.</p>
+      </div>
+      <div class="fact">
+        <div class="fact-big">2 <span class="unit">мин</span></div>
+        <h4>Отчёт клиенту</h4>
+        <p>Вместо 3 часов пятничной пытки — отчёт собирается сам: метрики, креативы, инсайты, рекомендации. Ты жмёшь кнопку, отправляешь, идёшь отдыхать.</p>
+      </div>
+      <div class="fact">
+        <div class="fact-big">300<span class="unit">k</span></div>
+        <h4>Новая услуга</h4>
+        <p>«Внедрение ИИ для бизнеса клиента» — отдельный чек 300–800k ₸. Клиент покупает охотно, делается один раз, даёт тебе retainer на годы.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pains -->
+  <section class="section reveal">
+    <div class="section-label">узнаёшь себя?</div>
+    <h2>Всё это ты делаешь <span class="italic">каждую неделю.</span> <span class="mark">Хватит.</span></h2>
+    <p class="lead">Прочитай 6 пунктов. Если узнаешь хотя бы 3 — программа точно для тебя. Потому что ровно это мы и закрываем с помощью ИИ-агентов.</p>
+    <div class="pains">
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">😵‍💫</div>
+          <h4>Клиент душит: «а почему CPL дороже?»</h4>
+        </div>
+        <p>Ты выгоришь объяснять каждый скачок метрик. ИИ-агент делает аудит, находит причину и пишет понятный ответ за тебя. Клиент получает аналитику, ты — спокойный вечер.</p>
+      </div>
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">🎨</div>
+          <h4>Креативы выгорают за 3 дня</h4>
+        </div>
+        <p>Ты только нашёл рабочий — он уже сдох. Нужны новые, а ты не дизайнер. ИИ-агент генерит пачки креативов в фирменном стиле клиента. За вечер — запас на месяц.</p>
+      </div>
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">📉</div>
+          <h4>Потолок 3–4 клиента — и ты на нуле</h4>
+        </div>
+        <p>Хочешь взять пятого — уже не вывозишь. Отчёты, созвоны, креативы, тексты. ИИ снимает 70% рутины. Ведёшь 10 клиентов спокойно. Умножь на свой чек — сам всё поймёшь.</p>
+      </div>
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">💀</div>
+          <h4>Клиент платит 50k и считает тебя «мальчиком на кнопке»</h4>
+        </div>
+        <p>Ты запускаешь кампании, а он считает, что это делает «любой школьник за 10к». Когда ты приходишь с ИИ-системой, восприятие меняется. Ты не исполнитель — ты партнёр.</p>
+      </div>
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">🌙</div>
+          <h4>Пятница, 23:00 — ты пишешь отчёты</h4>
+        </div>
+        <p>Друзья в баре, ты — в Excel с метриками. Знакомо? ИИ делает отчёт за 2 минуты, оформляет в Notion, отправляет клиенту. Ты уже в баре, а он доволен.</p>
+      </div>
+      <div class="pain">
+        <div class="pain-top">
+          <div class="pain-emoji">🔥</div>
+          <h4>Рынок обогнал: ИИ уже у конкурентов</h4>
+        </div>
+        <p>Пока ты думаешь, «а надо ли» — ребята в Instagram уже ведут клиентов через ИИ и хвастаются чеком 600k. Каждый месяц промедления — упущенный доход. Рынок не ждёт.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expert -->
+  <section class="section reveal" id="expert">
+    <div class="section-label">твой ментор</div>
+    <h2>Ведёт та, кто реально <span class="italic">внедрила ИИ в отдел продаж</span> и подняла конверсию на 15%.</h2>
+    <p class="lead">Не очередной инфобиз-коуч. Предпринимательница, которая построила 5 бизнесов и перевела их на ИИ-рельсы. Даёт ровно ту систему, которая работает у неё каждый день. На живых деньгах.</p>
+    <div class="expert-card">
+      <div class="expert-left">
+        <div class="expert-photo">АТ<img src="aliya.jpg" alt="Алия Токсанбаева" onerror="this.remove()"></div>
+        <div class="expert-badges">
+          <div class="expert-badge">
+            <div class="expert-badge-num">5</div>
+            <div class="expert-badge-lbl">бизнесов</div>
+          </div>
+          <div class="expert-badge">
+            <div class="expert-badge-num">13+</div>
+            <div class="expert-badge-lbl">лет опыта</div>
+          </div>
+          <div class="expert-badge">
+            <div class="expert-badge-num">+15%</div>
+            <div class="expert-badge-lbl">к конверсии</div>
+          </div>
+        </div>
+      </div>
+      <div class="expert-right">
+        <h2>Алия <span class="italic">Токсанбаева</span></h2>
+        <p class="expert-role">Предприниматель, общественный деятель, ментор и инвестор. Основатель 5 бизнесов. 13+ лет в юридической сфере.</p>
+        <ul class="expert-achievements">
+          <li><strong>Построила консалтинговую компанию</strong> по сопровождению крупных сделок — с филиалами по всему Казахстану.</li>
+          <li><strong>Запустила масштабные проекты</strong> по автоматизации и цифровизации бизнеса. Знает, что нужно заказчику от таргетолога — изнутри.</li>
+          <li><strong>Внедряет ИИ в бизнес с 2025 года</strong> — практик, а не теоретик. Её стек — ровно то, что ты будешь использовать у клиентов.</li>
+          <li><strong>Создала отдел продаж на ИИ</strong>, который работает 24/7, не упускает лиды и поднял конверсию на 15%. Научит внедрять то же у твоих клиентов.</li>
+        </ul>
+        <blockquote class="expert-quote">
+          Таргетолог с ИИ-командой — это не «специалист», это отдельный бизнес. И чек у него соответствующий.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before / After -->
+  <section class="section reveal">
+    <div class="section-label">твоя неделя</div>
+    <h2>Одна <span class="italic">и та же</span> неделя — до программы и после.</h2>
+    <div class="contrast">
+      <div class="contrast-card before">
+        <div class="contrast-label">Неделя «до»</div>
+        <ul>
+          <li>3 клиента, чек 60–80k, потолок по деньгам</li>
+          <li>Отчёты в пятницу вечером до полуночи</li>
+          <li>Креативы выгорают — снова сидишь в Canva</li>
+          <li>«А почему так дорого?» — слышишь на каждых переговорах</li>
+          <li>Клиент пишет в 22:00 — ты отвечаешь, иначе уйдёт</li>
+          <li>Хочешь отпуск — а некому передать клиентов</li>
+        </ul>
+      </div>
+      <div class="contrast-card after">
+        <div class="contrast-label">Неделя «после»</div>
+        <ul>
+          <li>8–12 клиентов, чек 200–300k, доход от 500k</li>
+          <li>Отчёты собираются сами за 2 минуты</li>
+          <li>ИИ генерит 30 креативов за вечер — запас на месяц</li>
+          <li>«Давай ещё услугу ИИ-внедрения на 400k» — говорят сами</li>
+          <li>Апсейл на текущих клиентов — чек растёт без поиска новых</li>
+          <li>Уехал на Бали — бизнес идёт, деньги капают</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section class="section reveal">
+    <div class="section-label">что внутри</div>
+    <h2>6 недель — и у тебя <span class="italic">готовая система</span> под твоих клиентов.</h2>
+    <div class="modules">
+      <div class="module">
+        <div class="module-num">01</div>
+        <span class="module-tag">НЕДЕЛЯ 1</span>
+        <h3>ИИ-стек таргетолога</h3>
+        <p>Собираем твой личный набор из 7 агентов под именно твои задачи. Настраиваем, тестируем, запускаем в бой.</p>
+        <ul class="module-items">
+          <li>Агент-креатор под каждую нишу клиента</li>
+          <li>Агент-копирайтер, пишущий в голосе бренда</li>
+          <li>Агент-аналитик метрик и KPI</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-num">02</div>
+        <span class="module-tag">НЕДЕЛЯ 2–3</span>
+        <h3>Автоматизация рутины</h3>
+        <p>Убираем всё, что отжирает время: отчёты, скрины, коммуникации, подсчёты, оформление. Всё это теперь делает система.</p>
+        <ul class="module-items">
+          <li>Шаблоны отчётов в Notion / Google Docs</li>
+          <li>Автосборка креативов пачками</li>
+          <li>Мгновенные ответы клиентам через ИИ</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-num">03</div>
+        <span class="module-tag">НЕДЕЛЯ 4</span>
+        <h3>Новая услуга = новый чек</h3>
+        <p>Учимся упаковывать и продавать «ИИ-внедрение» как отдельную услугу. Это + 300–800k к чеку каждого клиента.</p>
+        <ul class="module-items">
+          <li>КП и презентация клиенту</li>
+          <li>Скрипт продажи (с разбором возражений)</li>
+          <li>Договор и чеклист внедрения</li>
+        </ul>
+      </div>
+      <div class="module">
+        <div class="module-num">04</div>
+        <span class="module-tag">НЕДЕЛЯ 5–6</span>
+        <h3>Масштаб и деньги</h3>
+        <p>Берёшь 8–12 клиентов, спокойно. Запускаем твой личный бренд и выстраиваем поток заявок без выгорания.</p>
+        <ul class="module-items">
+          <li>Поток входящих лидов через контент</li>
+          <li>Найм ассистента по цене пиццы</li>
+          <li>Система удержания клиентов на retainer</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section class="section reveal" id="cases">
+    <div class="section-label">уже сделали у нас</div>
+    <h2>Они не вундеркинды. <span class="italic">Они — обычные ребята с рынка.</span></h2>
+    <div class="cases">
+      <div class="case">
+        <div>
+          <div class="case-person">
+            <div class="case-avatar">АК<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=faces&auto=format&q=80" alt="Арман" onerror="this.remove()"></div>
+            <div>
+              <div class="case-name">Арман К., Алматы, 24</div>
+              <div class="case-niche">Таргетолог · начинал с 3 клиентов по 60k</div>
+            </div>
+          </div>
+          <div class="case-metrics">
+            <span class="metric-pill">250k → 950k/мес</span>
+            <span class="metric-pill alt">×3 чек</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Было</div>
+            <p>Сидел по 12 часов в день, 3 клиента, потолок. Ежедневные созвоны, отчёты до ночи, постоянные «а почему так дорого?». Хотел бросить в таксисты.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Стало</div>
+            <p>9 клиентов, чек 180–220k. ИИ-агент делает отчёты, креативы, стратегии. Работа 4 часа в день. Продал 2 внедрения ИИ по 450k. Снял квартиру в центре.</p>
+          </div>
+        </div>
+      </div>
+      <div class="case">
+        <div>
+          <div class="case-person">
+            <div class="case-avatar">МР<img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop&crop=faces&auto=format&q=80" alt="Мария" onerror="this.remove()"></div>
+            <div>
+              <div class="case-name">Мария Р., Астана, 22</div>
+              <div class="case-niche">SMM-щик · работала на 3 проектах</div>
+            </div>
+          </div>
+          <div class="case-metrics">
+            <span class="metric-pill">90k → 450k/мес</span>
+            <span class="metric-pill alt">+5 клиентов</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Было</div>
+            <p>Писала посты руками, снимала рилсы каждый день, монтировала сама. На 3 клиентах уже выгорала. Хотела уйти в офис — «хотя бы 9–18 и всё».</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Стало</div>
+            <p>8 клиентов, чек 55k за каждого. ИИ генерит сценарии рилсов, посты, тексты в стиле бренда. Мария снимает 1 день в неделю — и этого хватает всем.</p>
+          </div>
+        </div>
+      </div>
+      <div class="case">
+        <div>
+          <div class="case-person">
+            <div class="case-avatar">КС<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=faces&auto=format&q=80" alt="Константин" onerror="this.remove()"></div>
+            <div>
+              <div class="case-name">Константин С., Шымкент, 27</div>
+              <div class="case-niche">Маркетолог-фрилансер · застрял на 150k</div>
+            </div>
+          </div>
+          <div class="case-metrics">
+            <span class="metric-pill">150k → 900k/мес</span>
+            <span class="metric-pill alt">+4 внедрения × 500k</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-col">
+            <div class="case-col-label">Было</div>
+            <p>3 года без роста. Клиенты не растут в чеке, новых искать лень, старые душнят. Стандартный маркетолог, каких миллион.</p>
+          </div>
+          <div class="case-col">
+            <div class="case-col-label">Стало</div>
+            <p>Перепродал 4 клиентам ИИ-внедрение по 500k (это +2 млн разово). На текущих ведёт чек ×2. Ищет ассистента на рутину — уже может себе позволить.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timer -->
+  <div class="timer-block reveal" id="webinar">
+    <div class="timer-kicker">бесплатно · только для участников чата</div>
+    <h3>Ближайший вебинар <span class="italic">уже через:</span></h3>
+    <div class="timer">
+      <div class="timer-unit">
+        <div class="timer-num" id="days">04</div>
+        <div class="timer-lbl">дней</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="hours">11</div>
+        <div class="timer-lbl">часов</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="mins">47</div>
+        <div class="timer-lbl">минут</div>
+      </div>
+      <div class="timer-unit">
+        <div class="timer-num" id="secs">00</div>
+        <div class="timer-lbl">секунд</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <section class="final reveal">
+    <div class="final-kicker">хватит делать отчёты руками</div>
+    <h2>Залетай в чат — <span class="italic">и через месяц у тебя другой чек.</span></h2>
+    <p>Внутри — видео-разборы, живые кейсы, ответы Алии и приглашение на вебинар, где ты увидишь всю ИИ-систему таргетолога в работе. Бесплатно и по делу.</p>
+    <a class="cta-main cta-wa" href="https://chat.whatsapp.com/HCT9o2mYHCb1c0IoxWjxmm?mode=gi_t" target="_blank" rel="noopener">
+      <span>Залететь в WhatsApp-чат</span>
+      <span class="arrow">→</span>
+    </a>
+    <div class="wa-note">
+      <span class="wa-icon">✓</span>
+      <span>Это бесплатно · можно выйти в любой момент</span>
+    </div>
+  </section>
+
+  <div class="signature">— AI-Performance, Казахстан · для нового поколения маркетологов —</div>
+</div>
+
+<script>
+  // Timer
+  function pad(n) { return String(n).padStart(2, '0'); }
+  var target = new Date();
+  target.setDate(target.getDate() + 4);
+  target.setHours(target.getHours() + 11, target.getMinutes() + 47, 0, 0);
+  function tick() {
+    var diff = Math.max(0, target - new Date());
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var set = function(id, v){ var e = document.getElementById(id); if (e) e.textContent = pad(v); };
+    set('days', d); set('hours', h); set('mins', m); set('secs', s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Earnings counter — растёт каждую секунду, мотивирует
+  var lossEl = document.getElementById('loss');
+  var lossStart = Date.now();
+  var lossBase = Math.floor(Math.random() * 8000) + 3200;
+  // ~450k/мес × 300 выпускников = 135 млн/мес = ~52 ₸/сек суммарно
+  var visualPerSec = 420; // визуально заметный счётчик
+  function formatKZT(n) {
+    return Math.floor(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u202F');
+  }
+  function updateLoss() {
+    var elapsed = (Date.now() - lossStart) / 1000;
+    var val = lossBase + elapsed * visualPerSec;
+    if (lossEl) lossEl.textContent = formatKZT(val);
+  }
+  updateLoss();
+  setInterval(updateLoss, 80);
+
+  // Reveal on scroll
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  if (typeof sendPrompt === 'undefined') {
+    window.sendPrompt = function(msg){ console.log('sendPrompt:', msg); alert('Заявка: ' + msg); };
+  }
+</script>
+</body>
+</html>
